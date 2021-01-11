@@ -549,29 +549,6 @@ angular
             .removeClass("inactive");
         }
       });
-
-      var ac = new usig.AutoCompleter("search", {
-        skin: "usig2",
-        onReady: function() {
-          $("#search")
-            .val("")
-            .removeAttr("disabled")
-            .focus();
-        },
-        afterSelection: function(option) {
-          if (
-            option instanceof usig.Direccion ||
-            option instanceof usig.inventario.Objeto
-          ) {
-            selectedOption = option;
-          }
-        },
-        afterGeoCoding: function(pt) {
-          if (pt instanceof usig.Punto) {
-            mapa.goTo(pt, true);
-          }
-        }
-      });
     });
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -784,7 +761,7 @@ angular
     };
 
 
-
+    
     ////////////////////////////////////////////////////////////////////////////////
     /////////////////////////LAYERS METHOD ACTIVE///////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
