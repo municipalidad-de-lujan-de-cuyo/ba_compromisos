@@ -27,11 +27,13 @@ var usig = usig || {};
 usig.App = usig.App || {};
 
 usig.App.config = {
-  server_url: "//epok.buenosaires.gob.ar/",
+  // server_url: "//epok.buenosaires.gob.ar/",
+  servers: ["//geoserver.lujandecuyo.gob.ar/geoserver/wms/"],
   symbols_url: "//static.mapa.buenosaires.gob.ar/symbols/",
   backgrounds_url: "//static.mapa.buenosaires.gob.ar/images/markers/fondos/",
-  baseLayer: "mapabsas_informacion_basica",
-  initBounds: [85000, 96750, 112000, 106750],
+  baseLayer: "catastro:distritos",
+  initBounds: [-7718669.7019523, -3935429.2887863, -7634818.2819352, -3890560.7531891],
+  bounds: [-7890864.4751577, -4010220.3531291, -7619854.4758907, -3774447.8238966],  // IZQ, ABA, DER, ARR
   pointRadius: 18,
   minPointRadius: 11,
   inverseIcons: [8, 9, 11, 12, 13, 15]
@@ -117,6 +119,14 @@ angular
     proj4.defs(
       "EPSG:221951",
       "+proj=tmerc +lat_0=-34.6297166 +lon_0=-58.4627 +k=0.9999980000000001 +x_0=100000 +y_0=100000 +ellps=intl +towgs84=-148,136,90,0,0,0,0 +units=m +no_defs"
+    );
+    proj4.defs(
+      'EPSG:4326',
+      '+title=WGS 84 (long/lat) +proj=longlat +ellps=WGS84 +datum=WGS84 +units=degrees'
+    );
+    proj4.defs(
+      "EPSG:22172",
+      "+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
     );
 
     //Locale!

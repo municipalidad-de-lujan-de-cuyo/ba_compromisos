@@ -657,7 +657,7 @@ angular
             return true;
           })
           .map(function(elem) {
-            var destProj = new proj4.Proj("EPSG:221951");
+            var destProj = new proj4.Proj("EPSG:3857");
             var sourceProj = new proj4.Proj("EPSG:4326");
             elem.proj = proj4(sourceProj, destProj, [
               parseFloat(elem.longitude),
@@ -672,8 +672,8 @@ angular
 
             var currentMarker = new OpenLayers.Feature.Vector(point, null, {
               externalGraphic: "images/punto.png",
-              graphicWidth: 8,
-              graphicHeight: 8,
+              graphicWidth: 12,
+              graphicHeight: 12,
               fillOpacity: 0.8
             });
 
@@ -748,9 +748,36 @@ angular
 
         var mapOptions = {
           divId: "mapa",
+          trackVisits: false,
           zoomBar: false,
-          baseLayer: usig.App.config.baseLayer,
+          servers: usig.App.config.servers,
+          // baseLayer: usig.App.config.baseLayer,
           initBounds: usig.App.config.initBounds,
+          bounds: usig.App.config.bounds,
+          OpenLayersJS: 'scripts/OpenLayers.js',
+          OpenLayersOptions: {
+            controls: [],
+            resolutions: [90,50,30,15,7.5,4,2,1,0.5,0.2],
+            projection: "EPSG:3857",
+            units: 'm'
+          },
+          initLocation: {
+            mapConfig: {
+              layers: [
+                {
+                  name: usig.App.config.baseLayer,
+                  options: {
+                    format: 'WMS',
+                    imageFormat: 'image/png',
+                    layerUrls: '//geoserver.lujandecuyo.gob.ar/geoserver/wms',
+                    isBaseLayer: false,
+                    minScale: 1000000,
+		                maxScale: 0
+                  }
+                }
+              ],
+            }
+          },
           onReady: function() {
             $scope.usigLayers.inicializar(); // Esto es para que funcione en IE 10
           }
@@ -761,7 +788,6 @@ angular
     };
 
 
-    
     ////////////////////////////////////////////////////////////////////////////////
     /////////////////////////LAYERS METHOD ACTIVE///////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////

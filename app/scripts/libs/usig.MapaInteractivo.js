@@ -59,6 +59,7 @@ return function(idDiv, options) {
 		$divIndicator.remove();
 		opts.OpenLayersOptions.maxExtent = new OpenLayers.Bounds(opts.bounds[0], opts.bounds[1], opts.bounds[2], opts.bounds[3]);
 		opts.OpenLayersOptions.initBounds = new OpenLayers.Bounds(opts.initBounds[0], opts.initBounds[1], opts.initBounds[2], opts.initBounds[3]);
+		opts.OpenLayersOptions.layers = [new OpenLayers.Layer.OSM()];
 	    map = new OpenLayers.Map(idDiv, opts.OpenLayersOptions);
 	    
 	    $('div.olMapViewport', $div).append($divIndicator);

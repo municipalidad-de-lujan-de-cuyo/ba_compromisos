@@ -229,7 +229,8 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-          '!<%= yeoman.dist %>/scripts/pym.min.js'
+          '!<%= yeoman.dist %>/scripts/pym.min.js',
+          '!<%= yeoman.dist %>/scripts/OpenLayers.js'
         ]
       }
     },
@@ -406,6 +407,12 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'bower_components/pym.js/dist',
           src: 'pym.min.js',
+          dest: '<%= yeoman.dist %>/scripts'
+        },
+        {
+          expand: true,
+          cwd: 'app/scripts',
+          src: 'OpenLayers.js',
           dest: '<%= yeoman.dist %>/scripts'
         }]
       },
